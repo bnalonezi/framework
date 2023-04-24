@@ -1,4 +1,4 @@
-name: test test
+name: ${{ matrix.tests }}
 
 on:
   workflow_call:
