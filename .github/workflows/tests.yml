@@ -26,10 +26,6 @@ jobs:
         ports:
           - 6379:6379
         options: --entrypoint redis-server
-      dynamodb:
-        image: amazon/dynamodb-local:latest
-        ports:
-          - 8888:8000
 
     strategy:
       fail-fast: true
@@ -75,7 +71,5 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
-          DYNAMODB_CACHE_TABLE: laravel_dynamodb_test
-          DYNAMODB_ENDPOINT: "http://localhost:8888"
           AWS_ACCESS_KEY_ID: random_key
           AWS_SECRET_ACCESS_KEY: random_secret
