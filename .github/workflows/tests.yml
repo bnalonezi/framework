@@ -30,41 +30,41 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-    strategy:
-      fail-fast: true
-      matrix:
-        tests:
-          - 'Auth'
-          - 'Broadcasting'
-          - 'Bus'
-          - 'Cache'
-          - 'Conditionable'
-          - 'Config'
-          - 'Console'
-          - 'Container'
-          - 'Cookie'
-          - 'Database'
-          - 'Encryption'
-          - 'Events'
-          - 'Filesystem'
-          - 'Foundation'
-          - 'Hashing'
-          - 'Http'
-          - 'Log'
-          - 'Mail'
-          - 'Notifications'
-          - 'Pagination'
-          - 'Pipeline'
-          - 'Queue'
-          - 'Redis'
-          - 'Session'
-          - 'Support'
-          - 'Testing'
-          - 'Translation'
-          - 'Validation'
-          - 'View'
-
-    name: PHP - ${{ matrix.tests }}
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        tests:
+#          - 'Auth'
+#          - 'Broadcasting'
+#          - 'Bus'
+#          - 'Cache'
+#          - 'Conditionable'
+#          - 'Config'
+#          - 'Console'
+#          - 'Container'
+#          - 'Cookie'
+#          - 'Database'
+#          - 'Encryption'
+#          - 'Events'
+#          - 'Filesystem'
+#          - 'Foundation'
+#          - 'Hashing'
+#          - 'Http'
+#          - 'Log'
+#          - 'Mail'
+#          - 'Notifications'
+#          - 'Pagination'
+#          - 'Pipeline'
+#          - 'Queue'
+#          - 'Redis'
+#          - 'Session'
+#          - 'Support'
+#          - 'Testing'
+#          - 'Translation'
+#          - 'Validation'
+#          - 'View'
+#
+#    name: PHP - ${{ matrix.tests }}
 
     steps:
       - name: Checkout code
