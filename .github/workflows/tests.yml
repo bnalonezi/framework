@@ -102,7 +102,7 @@ jobs:
 #          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
-        run: vendor/bin/paratest --parallel --processes=4
+        run: vendor/bin/phpunit --parallel --processes=4
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
