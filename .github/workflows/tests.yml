@@ -41,7 +41,7 @@ jobs:
           - 'Conditionable'
           - 'Config'
           - 'Console'
-          - 'Container,Routing'
+          - 'Container'
           - 'Cookie'
           - 'Database'
           - 'Encryption'
