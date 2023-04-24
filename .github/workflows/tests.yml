@@ -33,7 +33,14 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        tests: ['Auth', 'Broadcasting', 'Bus', 'Cache', 'Container', 'Validation', 'Testing']
+        tests:
+          - 'Auth'
+          - 'Broadcasting'
+          - 'Bus'
+          - 'Cache'
+          - 'Container'
+          - 'Validation'
+          - 'Testing'
 
     name: PHP - ${{ matrix.tests }}
 
