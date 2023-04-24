@@ -53,7 +53,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-progress --no-suggest --ignore-platform-reqs
+          composer update --prefer-dist --no-interaction --no-progress
 
 #      - name: Set Minimum PHP 8.0 Versions
 #        uses: nick-fields/retry@v2
