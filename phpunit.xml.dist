@@ -14,8 +14,32 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Laravel Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Auth">
+            <directory suffix="Test.php">./tests/Auth</directory>
+        </testsuite>
+
+        <testsuite name="Broadcasting">
+            <directory suffix="Test.php">./tests/Broadcasting</directory>
+        </testsuite>
+
+        <testsuite name="Bus">
+            <directory suffix="Test.php">./tests/Bus</directory>
+        </testsuite>
+
+        <testsuite name="Cache">
+            <directory suffix="Test.php">./tests/Cache</directory>
+        </testsuite>
+
+        <testsuite name="Container">
+            <directory suffix="Test.php">./tests/Container</directory>
+        </testsuite>
+
+        <testsuite name="Validation">
+            <directory suffix="Test.php">./tests/Validation</directory>
+        </testsuite>
+
+        <testsuite name="Testing">
+            <directory suffix="Test.php">./tests/Testing</directory>
         </testsuite>
     </testsuites>
     <php>
