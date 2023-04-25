@@ -80,7 +80,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          composer install --prefer-dist --no-interaction --no-progress --no-suggest --ignore-platform-reqs
+          composer install --prefer-dist --no-interaction --no-progress --no-suggest
 
       - name: Composer dump-autoload
         run: composer dump-autoload
