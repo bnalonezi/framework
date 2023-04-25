@@ -9,6 +9,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+env:
+  APP_KEY: base64:tjNCBdMvVfnh/WoXhloAANDmlsUxB7DpZM9msrZJmHg=
+
 jobs:
   linux_tests:
     runs-on: ubuntu-22.04
