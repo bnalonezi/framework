@@ -30,41 +30,41 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-#    strategy:
-#      fail-fast: true
-#      matrix:
-#        tests:
-#          - 'Auth'
-#          - 'Broadcasting'
-#          - 'Bus'
-#          - 'Cache'
-#          - 'Conditionable'
-#          - 'Config'
-#          - 'Console'
-#          - 'Container'
-#          - 'Cookie'
-#          - 'Database'
-#          - 'Encryption'
-#          - 'Events'
-#          - 'Filesystem'
-#          - 'Foundation'
-#          - 'Hashing'
-#          - 'Http'
-#          - 'Log'
-#          - 'Mail'
-#          - 'Notifications'
-#          - 'Pagination'
-#          - 'Pipeline'
-#          - 'Queue'
-#          - 'Redis'
-#          - 'Session'
-#          - 'Support'
-#          - 'Testing'
-#          - 'Translation'
-#          - 'Validation'
-#          - 'View'
-#
-#    name: PHP - ${{ matrix.tests }}
+    strategy:
+      fail-fast: true
+      matrix:
+        tests:
+          - 'Auth'
+          - 'Broadcasting'
+          - 'Bus'
+          - 'Cache'
+          - 'Conditionable'
+          - 'Config'
+          - 'Console'
+          - 'Container'
+          - 'Cookie'
+          - 'Database'
+          - 'Encryption'
+          - 'Events'
+          - 'Filesystem'
+          - 'Foundation'
+          - 'Hashing'
+          - 'Http'
+          - 'Log'
+          - 'Mail'
+          - 'Notifications'
+          - 'Pagination'
+          - 'Pipeline'
+          - 'Queue'
+          - 'Redis'
+          - 'Session'
+          - 'Support'
+          - 'Testing'
+          - 'Translation'
+          - 'Validation'
+          - 'View'
+
+    name: PHP - ${{ matrix.tests }}
 
     steps:
       - name: Checkout code
@@ -102,7 +102,7 @@ jobs:
 #          command: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose
+        run: vendor/bin/phpunit --testsuite ${{ matrix.tests }} --verbose
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
