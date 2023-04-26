@@ -86,7 +86,7 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-progress
 
-      - name: Execute tests
-        uses: ./.github/workflows/reusable-tests.yaml
-        with:
-          test_suite: ${{ matrix.tests }}
+  tests-job:
+    uses: ./.github/workflows/reusable-tests.yaml
+    with:
+      test_suite: ${{ matrix.tests }}
