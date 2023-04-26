@@ -30,12 +30,12 @@ jobs:
           - 6379:6379
         options: --entrypoint redis-server
 
-    strategy:
-      fail-fast: true
-      matrix:
-        tests:
-          - 'Auth'
-          - 'Broadcasting'
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        tests:
+#          - 'Auth'
+#          - 'Broadcasting'
 #          - 'Bus'
 #          - 'Cache'
 #          - 'Conditionable'
@@ -87,6 +87,12 @@ jobs:
           composer update --prefer-dist --no-interaction --no-progress
 
   tests-job:
+    strategy:
+      fail-fast: true
+      matrix:
+        tests:
+          - 'Auth'
+          - 'Broadcasting'
     uses: ./.github/workflows/reusable-tests.yaml
     with:
       test_suite: ${{ matrix.tests }}
