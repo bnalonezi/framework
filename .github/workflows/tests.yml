@@ -64,7 +64,7 @@ jobs:
 #          - 'Validation'
 #          - 'View'
 
-    name: PHP - ${{ matrix.tests }}
+    name: PHP -
 
     steps:
       - name: Checkout code
