@@ -70,8 +70,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: remove Xdebug
-        run: sudo apt-get remove php-xdebug
 #      - name: Setup PHP
 #        uses: shivammathur/setup-php@v2
 #        with:
