@@ -7,27 +7,14 @@ jobs:
     name: PHP checks
     runs-on: ubuntu-22.04
 
-    env:
-      extensions: dom, curl, libxml, redis-phpredis/phpredis@5.3.7, mbstring, zip, pcntl, pdo, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick, lz4
-      php-version: 8.0
-
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ env.php-version }}
-          tools: cs2pr
-          extensions: ${{ env.extensions }}
-          coverage: none
-        env:
-          REDIS_CONFIGURE_OPTS: --enable-redis --enable-redis-lz4 --with-liblz4
-          REDIS_LIBS: liblz4-dev
-          RDKAFKA_LIBS: librdkafka-dev
+          php-version: '8.0'
+          tools: cs2pr, phpcs
 
-      - name: Install Dependencies
-        run: composer install  --prefer-dist --no-interaction --no-scripts --ignore-platform-reqs
-
-      - name: PHPCS check
-        run: vendor/bin/phpcs -q --report=checkstyle | cs2pr --graceful-warnings
+      - name: Run phpcs
+        run: phpcs -q --report=checkstyle src | cs2pr
