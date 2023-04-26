@@ -87,6 +87,7 @@ jobs:
           composer update --prefer-dist --no-interaction --no-progress
 
   tests-job:
+    needs: linux_tests
     strategy:
       fail-fast: true
       matrix:
