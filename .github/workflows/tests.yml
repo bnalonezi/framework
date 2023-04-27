@@ -86,7 +86,13 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-progress
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: app-vendor
+          path: vendor
+
   tests-job:
+
     needs: linux_tests
     strategy:
       fail-fast: true

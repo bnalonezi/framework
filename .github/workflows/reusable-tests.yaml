@@ -2,6 +2,13 @@ name: Reusable tests
 
 on:
   workflow_call:
+#    outputs:
+#      firstword:
+#        description: "The first output string"
+#        value: ${{ jobs.example_job.outputs.output1 }}
+#      secondword:
+#        description: "The second output string"
+#        value: ${{ jobs.example_job.outputs.output2 }}
     inputs:
       test_suite:
         description: 'The test suite to run'
@@ -12,9 +19,17 @@ jobs:
   execute_test:
     runs-on: ubuntu-22.04
 
+#    outputs:
+#      output1: ${{ steps.step1.outputs.firstword }}
+#      output2: ${{ steps.step2.outputs.secondword }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: app-vendor
 
       - name: Execute tests
         run: vendor/bin/phpunit --testsuite ${{ inputs.test_suite }}
