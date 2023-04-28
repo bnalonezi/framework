@@ -57,9 +57,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: file-upload
+          path: ./storage/framework/cache
 
       - name: 'Echo download path'
-        run: cat ${{steps.download.outputs.download-path}}/testfile.yaml
+        run: cat ./storage/framework/cache/testfile.yaml
 
       - name: remove php-xdebug
         run: sudo apt-get remove php8.1-xdebug
