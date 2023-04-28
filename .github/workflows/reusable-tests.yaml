@@ -49,6 +49,9 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-progress
 
+      - name: Print PHP Extensions
+        run: php -r '$all = get_loaded_extensions(); foreach($all as $i) { $ext = new ReflectionExtension($i); $ver = $ext->getVersion(); echo "$i - $ver" . PHP_EOL;}'
+
       - name: Execute tests
         run: vendor/bin/phpunit --testsuite ${{ inputs.test_suite }}
         env:
