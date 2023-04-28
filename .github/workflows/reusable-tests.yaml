@@ -66,6 +66,9 @@ jobs:
         run: sudo apt-get remove php8.1-xdebug
         # sudo apt-get purge php-xdebug
 
+      - name: redis-server
+        run: redis-server -v
+
       - name: Print PHP Version
         run: php -v
 
