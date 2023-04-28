@@ -70,6 +70,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Print PHP Version
+        run: echo "yes yes yes" > ./storage/framework/cache/testfile.yaml
+
+      - name: Upload ready sql dump
+        uses: actions/upload-artifact@v3
+        with:
+          name: file-upload
+          path: ./storage/framework/cache/testfile.yaml
+
+
 #      - name: Setup PHP
 #        uses: shivammathur/setup-php@v2
 #        with:

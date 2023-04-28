@@ -52,6 +52,15 @@ jobs:
           composer update --prefer-dist --no-interaction --no-progress
 
 
+      - name: Download sql dump
+        id: download
+        uses: actions/download-artifact@v3
+        with:
+          name: file-upload
+
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
+
       - name: remove php-xdebug
         run: sudo apt-get remove php8.1-xdebug
         # sudo apt-get purge php-xdebug
