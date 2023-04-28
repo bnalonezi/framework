@@ -1,0 +1,87 @@
+name: Reusable tests
+
+on:
+  workflow_call:
+#    outputs:
+#      firstword:
+#        description: "The first output string"
+#        value: ${{ jobs.example_job.outputs.output1 }}
+#      secondword:
+#        description: "The second output string"
+#        value: ${{ jobs.example_job.outputs.output2 }}
+    inputs:
+      test_suite:
+        description: 'The test suite to run'
+        required: true
+        type: string
+
+jobs:
+  execute_test:
+    runs-on: ubuntu-22.04
+
+#    outputs:
+#      output1: ${{ steps.step1.outputs.firstword }}
+#      output2: ${{ steps.step2.outputs.secondword }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Start mysql service
+        run: |
+          sudo systemctl start mysql.service
+          mysql --host 127.0.0.1 --port 3306 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS test_laravel_db;"
+#      - uses: actions/download-artifact@v3
+#        with:
+#          name: app-vendor
+
+#      - name: Setup PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: 8.1
+#          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis-phpredis/phpredis@5.3.7, igbinary, msgpack, lzf, zstd, lz4, memcached, gmp
+#          ini-values: error_reporting=E_ALL
+#          tools: composer:v2
+#          coverage: none
+#        env:
+#          REDIS_CONFIGURE_OPTS: --enable-redis --enable-redis-igbinary --enable-redis-msgpack --enable-redis-lzf --with-liblzf --enable-redis-zstd --with-libzstd --enable-redis-lz4 --with-liblz4
+#          REDIS_LIBS: liblz4-dev, liblzf-dev, libzstd-dev
+
+      - name: Install Dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-progress
+
+
+      - name: Download sql dump
+        id: download
+        uses: actions/download-artifact@v3
+        with:
+          name: file-upload
+          path: ./storage/framework/cache
+
+      - name: 'Echo download path'
+        run: cat ./storage/framework/cache/testfile.yaml
+
+      - name: remove php-xdebug
+        run: sudo apt-get remove php8.1-xdebug
+        # sudo apt-get purge php-xdebug
+
+#      - name: redis-server
+#        run: redis-server -v
+
+      - name: Print PHP Version
+        run: php -v
+
+      - name: Print mysql Version
+        run: mysql -V
+
+      - name: Print PHP Extensions
+        run: php -r '$all = get_loaded_extensions(); foreach($all as $i) { $ext = new ReflectionExtension($i); $ver = $ext->getVersion(); echo "$i - $ver" . PHP_EOL;}'
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --testsuite ${{ inputs.test_suite }}
+        env:
+          DB_PORT: 3306
+          DB_USERNAME: root
+          AWS_ACCESS_KEY_ID: random_key
+          AWS_SECRET_ACCESS_KEY: random_secret
