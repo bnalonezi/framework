@@ -71,7 +71,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Print PHP Version
-        run: echo "yes yes yes" > ./storage/framework/cache/testfile.yaml
+        run: |
+          sudo touch ./storage/framework/cache/testfile.yaml
+          sudo echo "yes yes yes" >> ./storage/framework/cache/testfile.yaml
 
       - name: Upload ready sql dump
         uses: actions/upload-artifact@v3
