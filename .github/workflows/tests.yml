@@ -72,7 +72,7 @@ jobs:
 
       - name: Print PHP Version
         run: |
-          sudo touch ./storage/framework/cache/testfile.yaml
+          sudo mkdir -p ./storage/framework/cache
           sudo echo "yes yes yes" >> ./storage/framework/cache/testfile.yaml
 
       - name: Upload ready sql dump
