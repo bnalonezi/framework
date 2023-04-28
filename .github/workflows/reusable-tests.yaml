@@ -49,6 +49,11 @@ jobs:
         run: |
           composer update --prefer-dist --no-interaction --no-progress
 
+
+      - name: remove php-xdebug
+        run: sudo apt-get remove php-xdebug
+        # sudo apt-get purge php-xdebug
+
       - name: Print PHP Version
         run: php -v
 
