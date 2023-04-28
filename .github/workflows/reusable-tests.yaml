@@ -59,7 +59,7 @@ jobs:
           name: file-upload
 
       - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+        run: cat ${{steps.download.outputs.download-path}}/testfile.yaml
 
       - name: remove php-xdebug
         run: sudo apt-get remove php8.1-xdebug
