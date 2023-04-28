@@ -72,8 +72,8 @@ jobs:
 
       - name: Print PHP Version
         run: |
-          sudo mkdir -p ./storage/framework/cache
-          sudo echo "yes yes yes" >> ./storage/framework/cache/testfile.yaml
+          mkdir -p ./storage/framework/cache
+          echo "yes yes yes" >> ./storage/framework/cache/testfile.yaml
 
       - name: Upload ready sql dump
         uses: actions/upload-artifact@v3
