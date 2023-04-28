@@ -51,7 +51,7 @@ jobs:
 
 
       - name: remove php-xdebug
-        run: sudo apt-get remove php-xdebug
+        run: sudo apt-get remove php8.1-xdebug
         # sudo apt-get purge php-xdebug
 
       - name: Print PHP Version
